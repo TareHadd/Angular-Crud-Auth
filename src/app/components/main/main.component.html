@@ -1,0 +1,65 @@
+<main class="w-100 bg-secondary d-flex flex-column align-items-center justify-content-center">
+    <div class="row w-100 h-100 m-0" >
+        <div class="col-lg-7 mt-4 mt-sm-0">
+            <div class=" bg-dark p-4 text-light rounded shadow">
+               <form [formGroup]="myForm" (submit)="execute()">
+                <div class="mb-3">
+                    <label class="form-label">Naslov</label>
+                    <input formControlName="name" type="text" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Sadrzaj</label>
+                    <textarea formControlName="content" class="form-control" id="" cols="10" rows="1" required></textarea>
+                </div>
+                <button class="bt btn btn-primary" type="submit" [disabled]="!myForm.valid">Dodaj</button>
+               </form>
+                <div class="d-flex flex-column justify-content-start align-items-baseline">
+                    <button class="bt btn btn-light my-1" (click)="getData()">Get Data</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="formData.length < 0 && formStatus">
+            <p>No posts available</p>
+        </div>
+        <div class="col-lg-4 mt-5 mt-lg-0">
+            <ul *ngIf="formData.length >= 1 && !formStatus" class="p-0">
+                <li *ngFor="let data of formData" class="position-relative border p-4 my-2  rounded">
+                    <h4>{{ data.name }}</h4>
+                    <p>{{ data.content }}</p>
+                    <span class="pointer text-danger position-absolute top-0 end-0 m-2" (click)="onDeleteNews(data)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x-circle-fill"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                        </svg>
+                    </span>
+                    <button class="btn btn-warning btn-sm" (click)="update(data)">Update</button>
+                </li>
+            </ul>
+            <div *ngIf="formStatus && !error" class="d-flex justify-content-center">
+                <app-spinner></app-spinner>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="row m-0 w-100 mt-2">
+        <h2 class="text-danger" *ngIf="error">Something is wrong</h2>
+    </div>
+    <!-- <div class="row w-100 d-flex justify-content-center" *ngIf="selected">
+        <div class="col-8">
+            <form [formGroup]="updateForm" (ngSubmit)="updatePost()" >
+                <div class="mb-3">
+                    <label class="form-label">Naslov</label>
+                    <input type="text" formControlName="name" class="form-control" required value="{{ sname }}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Sadrzaj</label>
+                    <textarea class="form-control" formControlName="content" cols="10" rows="1" required value="{{ scontent }}"></textarea>
+                </div>
+                <button class="bt btn btn-primary" type="submit">Update</button>
+            </form>
+        </div>
+    </div> -->
+</main>
+

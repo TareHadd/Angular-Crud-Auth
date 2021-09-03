@@ -1,0 +1,18 @@
+<div class="w d-flex flex-column justify-content-center align-items-center">
+    <form [formGroup]="loginForm" (submit)="login()" class="row g-3 bg-dark p-3 rounded">
+        <div class="col-12">
+          <label class="text-light">Email</label>
+          <input type="text" class="form-control text-dark" value="email@example.com" formControlName="email">
+        </div>
+        <div class="col-12">
+          <label class="text-light">Password</label>
+          <input type="password" class="form-control" placeholder="Password" formControlName="password">
+        </div>
+        <div class="col-12">
+          <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary mb-3">Log in</button>
+        </div>
+    </form>
+    <div>
+        <h4 class="text-danger" *ngIf="erorrs">{{ erorrs }}</h4>
+    </div>
+</div>

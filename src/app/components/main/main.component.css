@@ -1,0 +1,19 @@
+main{
+    min-height: 100vh;
+}
+
+.bt{
+    min-width: 100px;
+}
+
+ul li{
+    list-style: none;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.pointer:hover{
+    color: rgb(56, 9, 9) !important;
+}
