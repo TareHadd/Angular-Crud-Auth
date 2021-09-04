@@ -1,7 +1,7 @@
 <main class="w-100 bg-secondary d-flex flex-column align-items-center justify-content-center">
-    <div class="row w-100 h-100 m-0" >
+    <div class="row w-100 h-100 m-0">
         <div class="col-lg-7 mt-4 mt-sm-0">
-            <div class=" bg-dark p-4 text-light rounded shadow">
+            <div class=" bg-dark p-4 text-light rounded shadow" *ngIf="!selected">
                <form [formGroup]="myForm" (submit)="execute()">
                 <div class="mb-3">
                     <label class="form-label">Naslov</label>
@@ -18,6 +18,16 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-7 mt-4 mt-sm-0" *ngIf="selected">
+            <app-detail 
+            [singleNews]="news" 
+            (sendEvent)="catchEvent($event)"
+            >
+            </app-detail>
+        
+        </div>
+
         <div *ngIf="formData.length < 0 && formStatus">
             <p>No posts available</p>
         </div>
@@ -46,20 +56,9 @@
     <div class="row m-0 w-100 mt-2">
         <h2 class="text-danger" *ngIf="error">Something is wrong</h2>
     </div>
-    <!-- <div class="row w-100 d-flex justify-content-center" *ngIf="selected">
-        <div class="col-8">
-            <form [formGroup]="updateForm" (ngSubmit)="updatePost()" >
-                <div class="mb-3">
-                    <label class="form-label">Naslov</label>
-                    <input type="text" formControlName="name" class="form-control" required value="{{ sname }}">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Sadrzaj</label>
-                    <textarea class="form-control" formControlName="content" cols="10" rows="1" required value="{{ scontent }}"></textarea>
-                </div>
-                <button class="bt btn btn-primary" type="submit">Update</button>
-            </form>
-        </div>
-    </div> -->
+
+    {{ news.name }}
+    {{ news.content }}
+    {{ news.id }}
 </main>
 

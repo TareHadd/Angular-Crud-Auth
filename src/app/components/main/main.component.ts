@@ -20,15 +20,18 @@ export class MainComponent implements OnInit {
   formStatus = false;
   error = null;
 
-  // sname: string = '';
-  // scontent: string = '';
-  // sid: string = '';
-  // selected = true;
-
-  private errorSub = new Subscription;
-
   myForm!:FormGroup;
   updateForm!:FormGroup;
+
+  selected:boolean = false;
+
+  news:News = {
+    name:'Nothing selected',
+    content:'Select some post',
+    id:'xxxx'
+  };
+
+  testProperty = 'no event';
 
   constructor(private service:PostService, private router: Router) {
 
@@ -88,22 +91,29 @@ export class MainComponent implements OnInit {
     )
   }
 
-  update(data){
-    // this.sname = data.name;
-    // this.scontent = data.content;
-    // this.sid = data.id;
+  updatePost(){
+    this.service.updateData(this.news).subscribe(
+      () => {
+        this.formStatus=false;
+        this.getData();
+      }
+    )
   }
 
-  // updatePost(){
-  //   this.formStatus=true;
-  //   this.service.updateData(this.updateForm.value, this.sid).subscribe(
-  //     () => {
-  //       this.formStatus=false;
-  //       this.selected = false;
-  //       this.getData();
-  //     }
-  //   )
-  //}
+  // In main 
+  update(data){
+    this.news = data;
+    this.selected= true;
+  }
+  // 
+
+  catchEvent(data)
+  {
+    this.news = data;
+    this.updatePost();
+  }
+
+
 
 
 }

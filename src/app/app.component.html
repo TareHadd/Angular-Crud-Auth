@@ -1,7 +1,7 @@
 <div class="navbar w-100 d-flex justify-content-evenly bg-dark text-light">
 <a routerLink="register" *ngIf="!isLogged">Register</a>
 <a routerLink="" *ngIf="!isLogged">Log in</a>
-<a routerLink="main" *ngIf="isLogged">Add news</a>
+<a routerLink="" *ngIf="isLogged">Add news</a>
 <a style="cursor: pointer;" (click)="onLogout()" *ngIf="isLogged">Logout</a>
 </div>
 <router-outlet></router-outlet>

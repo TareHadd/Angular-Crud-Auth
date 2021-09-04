@@ -41,8 +41,8 @@ export class PostService {
       return this.http.delete(`https://test-10eca-default-rtdb.firebaseio.com/news/${data.id}.json`)
     }
 
-    updateData(data: News, id:string){
-      return this.http.put(`https://test-10eca-default-rtdb.firebaseio.com/news/${id}.json`, data)
+    updateData(data: News){
+      return this.http.put(`https://test-10eca-default-rtdb.firebaseio.com/news/${data.id}.json`, data)
     }
 
 
